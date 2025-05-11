@@ -1,6 +1,6 @@
 """
 Установка необходимых библиотек:
-~ pip install mysql-connector-python
+~ pip install mysql-connector-python mysql
 """
 
 import csv
@@ -10,7 +10,7 @@ from mysql.connector import Error
 # Конфигурация подключения к базе данных
 DB_CONFIG = {
     'host': 'localhost',
-    'user': 'ваш_пользователь',
+    'user': 'ваш_логин',
     'password': 'ваш_пароль',
     'database': 'educational_institution',
     'charset': 'utf8mb4'
