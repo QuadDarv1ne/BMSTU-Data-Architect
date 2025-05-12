@@ -1,0 +1,4 @@
+Student Habits vs Academic Performance
+Great for regression, classification, EDA, visualization, and even ML practice.
+
+Ссылка - https://www.kaggle.com/datasets/jayaantanaath/student-habits-vs-academic-performance/data
