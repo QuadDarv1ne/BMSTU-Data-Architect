@@ -11,27 +11,21 @@ import seaborn as sns
 # Загрузка данных
 df = pd.read_csv("student_habits_performance.csv")
 
-# Просмотр первых строк
-print(df.head())
+# Проверка имён колонок 
+print("Список колонок:", df.columns.tolist())  # Убедимся, какие названия на самом деле есть
 
-# Проверка на пропуски
-print(df.isnull().sum())
-
-# Основные статистики
-print(df.describe())
-
-# Визуализация корреляции между сном и GPA
-sns.scatterplot(data=df, x='Sleep Hours', y='GPA')
+# Визуализация корреляции между сном и оценками
+sns.scatterplot(data=df, x='sleep_hours', y='exam_score')  # Исправлено на sleep_hours и exam_score
 plt.title("Влияние сна на успеваемость")
 plt.show()
 
-# Сравнение среднего GPA у студентов с разной физической активностью
-sns.boxplot(data=df, x='Physical Activity', y='GPA')
+# Сравнение среднего балла у студентов с разной физической активностью
+sns.boxplot(data=df, x='exercise_frequency', y='exam_score')  # Исправлено на exercise_frequency
 plt.title("Физическая активность и успеваемость")
 plt.show()
 
-# Корреляционная матрица
-corr_matrix = df.corr(numeric_only=True)
-sns.heatmap(corr_matrix, annot=True, cmap='coolwarm')
+# Корреляционная матрица (только числовые колонки)
+corr_matrix = df.select_dtypes(include=['number']).corr()
+sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', fmt=".2f")
 plt.title("Корреляция между привычками и успеваемостью")
 plt.show()
