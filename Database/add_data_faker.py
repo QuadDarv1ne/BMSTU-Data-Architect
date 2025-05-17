@@ -316,7 +316,7 @@ if __name__ == "__main__":
     config = {
         'db_host': 'localhost',
         'db_user': 'root',
-        'db_password': 'Stalkerqwe1007',
+        'db_password': 'password',
         'db_name': 'educational_institution',
         'num_teachers': 100,
         'num_students': 5000,
