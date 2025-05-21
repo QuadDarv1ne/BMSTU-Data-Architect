@@ -2,7 +2,9 @@
 Генератор учебных данных с сохранением в БД и CSV
 
 Установка зависимостей:
-pip install faker mysql-connector-python tqdm python-dotenv
+pip install mysql-connector-python faker tqdm python-dotenv
+pip show mysql-connector-python
+pip install pymysql
 """
 
 from __future__ import annotations
@@ -60,6 +62,7 @@ class DataGenerator:
         self.fake = Faker("ru_RU")
         self.db_pool = self._create_db_pool()
         self._prepare_filesystem()
+        self._validate_db_structure()
 
     def _prepare_filesystem(self) -> None:
         self.config.csv_dir.mkdir(parents=True, exist_ok=True)
@@ -78,6 +81,17 @@ class DataGenerator:
     def _get_db_connection(self) -> PooledMySQLConnection:
         return self.db_pool.get_connection()
 
+    def _validate_db_structure(self):
+        # Проверяет соответствие структуры БД ожидаемой
+        with self._get_db_connection() as conn:
+            with conn.cursor(buffered=True) as cursor:
+                cursor.execute("DESCRIBE Departments")
+                columns = {row[0] for row in cursor.fetchall()}
+                required_columns = {'department_id', 'department_name', 'head_of_department'}
+                if not required_columns.issubset(columns):
+                    missing = required_columns - columns
+                    raise RuntimeError(f"В таблице Departments отсутствуют колонки: {missing}")
+    
     @staticmethod
     def _chunk_data(data: List[Tuple], chunk_size: int) -> Generator[List[Tuple], None, None]:
         for i in range(0, len(data), chunk_size):
@@ -148,6 +162,9 @@ class DataGenerator:
                 cursor.execute("SELECT * FROM Teachers LIMIT 0")
                 self._execute_batch(query, data, "Teachers", cursor.description)
 
+                # Явно закрываем курсор после использования
+                cursor.close()
+
     def generate_departments(self) -> None:
         logger.info("Генерация факультетов...")
         with self._get_db_connection() as conn:
@@ -155,8 +172,7 @@ class DataGenerator:
                 cursor.execute("SELECT teacher_id FROM Teachers ORDER BY RAND() LIMIT 10")
                 heads = [row[0] for row in cursor.fetchall()]
 
-                # Явно закрываем курсор после использования
-                cursor.close()
+                
 
         departments = [
             ("Физико-математический", "ФМФ"),
@@ -171,15 +187,12 @@ class DataGenerator:
             ("Медицинский", "МФ"),
         ]
 
-        data = [
-            (f"{name} факультет", abbr, head)
-            for (name, abbr), head in zip(departments, heads)
-        ]
+        data = [(name, head) for name, head in zip(departments, heads)]
 
         query = """
             INSERT INTO Departments 
-            (department_name, abbreviation, head_id)
-            VALUES (%s, %s, %s)
+            (department_name, head_of_department)
+            VALUES (%s, %s)
         """
         
         with self._get_db_connection() as conn:
