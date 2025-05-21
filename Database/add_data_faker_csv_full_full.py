@@ -10,7 +10,7 @@ fake = Faker('ru_RU')
 db = mysql.connector.connect(
     host="localhost",
     user="root",
-    password="Stalkerqwe1007",
+    password="root",
     database="educational_institution"
 )
 
