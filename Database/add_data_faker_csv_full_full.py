@@ -201,7 +201,7 @@ def generate_assignment_grades(num_grades=3000):
         cursor.execute(sql, val)
     db.commit()
 
-def generate_all(num_teachers=50, num_students=1000, num_courses=50, num_entries=200, num_enrollments=2000, num_grades=3000, num_attendance=5000, num_assignments=200, num_assignment_grades=3000):
+def generate_all(num_teachers=200, num_students=10000, num_courses=50, num_entries=200, num_enrollments=2000, num_grades=3000, num_attendance=5000, num_assignments=200, num_assignment_grades=3000):
     """Основной метод генерации данных"""
     generate_teachers(num_teachers)
     generate_departments()
