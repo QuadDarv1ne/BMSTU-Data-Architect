@@ -8,3 +8,6 @@ sqlalchemy
 scikit-learn
 python-dotenv
 apache-airflow
+tqdm
+faker
+argparse
