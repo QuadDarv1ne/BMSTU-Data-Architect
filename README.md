@@ -109,9 +109,9 @@ BMSTU-DATA-ARCHITECT/
 
 ```
 
-### Видео с Rutube
+### Видео демонстрация
 
-<iframe width="560" height="315" src="https://rutube.ru/play/embed/d2a9250f534a2d7efa4b72abf8adbb85" frameborder="0" allowfullscreen></iframe>
+Вы можете посмотреть видео демонстрацию проекта по [этой ссылке](https://github.com/QuadDarv1ne/BMSTU-Data-Architect/blob/master/add_data_on_project.mp4).
 
 #### Загрузка в репозиторий
 
