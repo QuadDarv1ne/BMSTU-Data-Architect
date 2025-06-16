@@ -1,7 +1,7 @@
 # Исключаемые файлы и папки
 __pycache__/
 *.pyc
-*.csv
+# *.csv
 *.log
 .DS_Store
 venv/
