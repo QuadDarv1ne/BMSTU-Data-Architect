@@ -1,0 +1,25 @@
+# Базовые зависимости Airflow
+apache-airflow
+apache-airflow-providers-mysql
+
+# Обработка данных
+pandas
+numpy
+pyarrow
+
+# Работа с API и данными
+requests
+python-dotenv
+mysql-connector-python
+
+# Утилиты
+python-dateutil
+pyyaml
+
+# Для распределенной обработки
+apache-airflow-providers-apache-spark
+pyspark
+
+# Для контейнеризации
+apache-airflow-providers-docker
+docker
