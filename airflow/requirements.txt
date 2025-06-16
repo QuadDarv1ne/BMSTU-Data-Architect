@@ -15,3 +15,11 @@ mysql-connector-python
 # Утилиты
 python-dateutil
 pyyaml
+
+# Для распределенной обработки
+apache-airflow-providers-apache-spark
+pyspark
+
+# Для контейнеризации
+apache-airflow-providers-docker
+docker
