@@ -1,6 +1,7 @@
 # Выпускная квалификационная работа "Архитектор данных"
 
 [![DOI](https://zenodo.org/badge/988272572.svg)](https://doi.org/10.5281/zenodo.17287964)
+[![ORCID](https://img.shields.io/badge/ORCID-0009--0007--7605--539X-green?logo=orcid&logoColor=white)](https://orcid.org/0009-0007-7605-539X)
 
 ![МГТУ им. Баумана](mgtu-bauman.png)
 
